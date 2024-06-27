@@ -1,13 +1,11 @@
-const game = ["paper", "rock", "scisors"]
-
-function getComputerChoice(){
+function getComputerChoice() {
     let random = Math.floor(Math.random() * 3);
     let computerChoice = "";
-    if(random === 0){
+    if (random === 0) {
         computerChoice = "paper";
-    }else if(random === 1){
+    } else if (random === 1) {
         computerChoice = "rock";
-    }else{
+    } else {
         computerChoice = "scissors";
     }
     return computerChoice;
@@ -16,35 +14,50 @@ function getComputerChoice(){
 function getHumanChoice() {
     var humanChoice = prompt("Indique con qué va a jugar: paper, rock o scissors");
     humanChoice = humanChoice.toLowerCase();
-    
+
     while (humanChoice !== "paper" && humanChoice !== "rock" && humanChoice !== "scissors") {
         alert("Indique un valor correcto: paper, rock o scissors");
         humanChoice = prompt("Indique con qué va a jugar: paper, rock o scissors").toLowerCase();
     }
-    
+
     return humanChoice;
 };
 
 function playRound(humanChoice, computerChoice) {
-    if(humanChoice === "paper" && computerChoice === "rock"){
+    if (humanChoice === "paper" && computerChoice === "rock") {
         console.log("Ganaste! El papel vence a la roca");
-    }else if(humanChoice === "rock" && computerChoice === "scissors"){
+        humanScore++;
+    } else if (humanChoice === "rock" && computerChoice === "scissors") {
         console.log("Ganaste! La roca vence a las tijeras");
-    }else if( humanChoice === "scissors" && computerChoice === "paper"){
+        humanScore++;
+    } else if (humanChoice === "scissors" && computerChoice === "paper") {
         console.log("Ganaste! Las tijeras vencen al papel");
-    }else if(humanChoice === computerChoice){
+        humanScore++;
+    } else if (humanChoice === computerChoice) {
         console.log("Es un empate!");
-    }else{
-        console.log(`Perdiste! El ${computerChoice} vence al ${humanChoice}`)
+    } else {
+        console.log(`Perdiste! El ${computerChoice} vence al ${humanChoice}`);
+        computerScore++;
     }
-}
-
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+};
 
 var humanScore = 0;
 var computerScore = 0;
 
-console.log(computerSelection)
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+        console.log(`Tu puntaje ${humanScore} // Computadora ${computerScore}`);
+    };
+    if(humanScore > computerScore){
+        console.log("Felicidades Ganaste el juego!")
+    }else if(humanScore < computerScore){
+        console.log("Perdiste el juego :(")
+    }else{
+        console.log("Fue un empate!")
+    };
+};
 
-playRound(humanSelection, computerSelection)
+playGame();
