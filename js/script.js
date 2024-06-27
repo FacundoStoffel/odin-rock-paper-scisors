@@ -1,6 +1,6 @@
 const game = ["paper", "rock", "scisors"]
 
-function getComputeChoice(){
+function getComputerChoice(){
     let random = Math.floor(Math.random() * 3);
     let computerChoice = "";
     if(random === 0){
@@ -8,7 +8,7 @@ function getComputeChoice(){
     }else if(random === 1){
         computerChoice = "rock";
     }else{
-        computerChoice = "scisors";
+        computerChoice = "scissors";
     }
     return computerChoice;
 };
@@ -26,11 +26,25 @@ function getHumanChoice() {
 };
 
 function playRound(humanChoice, computerChoice) {
-    if()
+    if(humanChoice === "paper" && computerChoice === "rock"){
+        console.log("Ganaste! El papel vence a la roca");
+    }else if(humanChoice === "rock" && computerChoice === "scissors"){
+        console.log("Ganaste! La roca vence a las tijeras");
+    }else if( humanChoice === "scissors" && computerChoice === "paper"){
+        console.log("Ganaste! Las tijeras vencen al papel");
+    }else if(humanChoice === computerChoice){
+        console.log("Es un empate!");
+    }else{
+        console.log(`Perdiste! El ${computerChoice} vence al ${humanChoice}`)
+    }
 }
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
 
 var humanScore = 0;
 var computerScore = 0;
 
-console.log(getComputeChoice())
-console.log(getHumanChoice())
+console.log(computerSelection)
+
+playRound(humanSelection, computerSelection)
