@@ -1,3 +1,4 @@
+//funcion para que la computadora saque una jugada aleatoria
 function getComputerChoice() {
     let random = Math.floor(Math.random() * 3);
     let computerChoice = "";
@@ -11,6 +12,7 @@ function getComputerChoice() {
     return computerChoice;
 };
 
+//funcion para pedir al jugador haga una jugada 
 function getHumanChoice() {
     var humanChoice = prompt("Indique con qué va a jugar: paper, rock o scissors");
     humanChoice = humanChoice.toLowerCase();
@@ -23,6 +25,7 @@ function getHumanChoice() {
     return humanChoice;
 };
 
+//funcion para jugar una partida contra la computadora
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === "paper" && computerChoice === "rock") {
         console.log("Ganaste! El papel vence a la roca");
@@ -44,6 +47,7 @@ function playRound(humanChoice, computerChoice) {
 var humanScore = 0;
 var computerScore = 0;
 
+//funcion para hacer una juego de 5 rondas
 function playGame() {
     for (let i = 0; i < 5; i++) {
         const humanSelection = getHumanChoice();
