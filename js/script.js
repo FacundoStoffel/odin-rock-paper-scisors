@@ -26,42 +26,60 @@ function getHumanChoice() {
 };
 
 //funcion para jugar una partida contra la computadora
-function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice) {
+    let computerChoice = getComputerChoice();
+    let resultText = "";
+
     if (humanChoice === "paper" && computerChoice === "rock") {
-        console.log("Ganaste! El papel vence a la roca");
+        resultText = "Ganaste! El papel vence a la roca";
         humanScore++;
     } else if (humanChoice === "rock" && computerChoice === "scissors") {
-        console.log("Ganaste! La roca vence a las tijeras");
+        resultText = "Ganaste! La roca vence a las tijeras";
         humanScore++;
     } else if (humanChoice === "scissors" && computerChoice === "paper") {
-        console.log("Ganaste! Las tijeras vencen al papel");
+        resultText = "Ganaste! Las tijeras vencen al papel";
         humanScore++;
     } else if (humanChoice === computerChoice) {
-        console.log("Es un empate!");
+        resultText = "Es un empate!";
     } else {
-        console.log(`Perdiste! El ${computerChoice} vence al ${humanChoice}`);
+        resultText = `Perdiste! El ${computerChoice} vence al ${humanChoice}`;
         computerScore++;
     }
+
+    document.getElementById("result").textContent = resultText;
+    document.getElementById("score").textContent = `Tu puntaje: ${humanScore} | Computadora: ${computerScore}`
 };
 
 var humanScore = 0;
 var computerScore = 0;
 
+document.getElementById("paper").addEventListener("click", function(){
+    playRound("paper");
+});
+
+document.getElementById("rock").addEventListener("click", function(){
+    playRound("rock");
+});
+
+document.getElementById("scissors").addEventListener("click", function(){
+    playRound("scissors");
+});
+
 //funcion para hacer una juego de 5 rondas
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-        console.log(`Tu puntaje ${humanScore} // Computadora ${computerScore}`);
-    };
-    if(humanScore > computerScore){
-        console.log("Felicidades Ganaste el juego!")
-    }else if(humanScore < computerScore){
-        console.log("Perdiste el juego :(")
-    }else{
-        console.log("Fue un empate!")
-    };
-};
+// function playGame() {
+//     for (let i = 0; i < 5; i++) {
+//         const humanSelection = getHumanChoice();
+//         const computerSelection = getComputerChoice();
+//         playRound(humanSelection, computerSelection);
+//         console.log(`Tu puntaje ${humanScore} // Computadora ${computerScore}`);
+//     };
+//     if(humanScore > computerScore){
+//         console.log("Felicidades Ganaste el juego!")
+//     }else if(humanScore < computerScore){
+//         console.log("Perdiste el juego :(")
+//     }else{
+//         console.log("Fue un empate!")
+//     };
+// };
 
 playGame();
