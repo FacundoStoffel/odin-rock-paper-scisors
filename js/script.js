@@ -47,21 +47,33 @@ function playRound(humanChoice) {
     }
 
     document.getElementById("result").textContent = resultText;
-    document.getElementById("score").textContent = `Tu puntaje: ${humanScore} | Computadora: ${computerScore}`
+    document.getElementById("score").textContent = `Tu puntaje: ${humanScore} | Computadora: ${computerScore}`;
+
+    if (humanScore === 5) {
+        resultText = "Felicidades Ganaste my love";
+        document.getElementById("result").textContent = resultText;
+        humanScore = 0;
+        computerScore = 0;
+    } if (computerScore === 5) {
+        resultText = "JAJAJA Perdiste weon";
+        document.getElementById("result").textContent = resultText;
+        humanScore = 0;
+        computerScore = 0;
+    }
 };
 
 var humanScore = 0;
 var computerScore = 0;
 
-document.getElementById("paper").addEventListener("click", function(){
+document.getElementById("paper").addEventListener("click", function () {
     playRound("paper");
 });
 
-document.getElementById("rock").addEventListener("click", function(){
+document.getElementById("rock").addEventListener("click", function () {
     playRound("rock");
 });
 
-document.getElementById("scissors").addEventListener("click", function(){
+document.getElementById("scissors").addEventListener("click", function () {
     playRound("scissors");
 });
 
